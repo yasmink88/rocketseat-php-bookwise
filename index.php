@@ -1,3 +1,6 @@
+<?php
+    require 'data.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,21 +34,23 @@
         </form>
 
         <section class="book-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-4">
-            <div class="book flex flex-col gap-4 bg-red-400 p-3 rounded-md bg-stone-900">
-                <div class="book-info flex gap-4">
-                    <div class="book-image flex-1">
-                        <img class="w-full rounded-md"src="https://loremflickr.com/200/200?random=1" alt="Book cover">
+            <?php foreach ($books as $book): ?>
+                <div class="book flex flex-col gap-4 bg-red-400 p-3 rounded-md bg-stone-900">
+                    <div class="book-info flex gap-4">
+                        <div class="book-image flex-1">
+                            <img class="w-full rounded-md"src="https://loremflickr.com/200/200?random=1" alt="Book cover">
+                        </div>
+                        <div class="book-content flex-2 flex flex-col gap-2">
+                            <h2 class="text-md leading-[1.4] font-semibold"><a class="hover:underline" href="/book.php?id=<?= $book['id'] ?>"> <?=$book['title'] ?></a></h2>
+                            <p class="text-xs italic"><?= $book['author'] ?></p>
+                            <span class="text-xs">⭐️⭐️⭐️⭐️⭐️</span>
+                        </div>
                     </div>
-                    <div class="book-content flex-2 flex flex-col gap-2">
-                        <h2 class="text-md leading-[1.4] font-semibold"><a class="hover:underline" href="/book.php"> Adventures to the center of the earth</a></h2>
-                        <p class="text-xs italic">William Shakespeare</p>
-                        <span class="text-xs">⭐️⭐️⭐️⭐️⭐️</span>
+                    <div class="book-description text-sm">
+                        <p><?= $book['description'] ?></p>
                     </div>
                 </div>
-                <div class="book-description text-sm">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptatum, enim voluptatem commodi modi quasi.</p>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </section>
     </main>
     
